@@ -1,0 +1,3440 @@
+apiVersion: kobe.semagrow.org/v1alpha1
+kind: Benchmark
+metadata:
+  name: gssbench
+spec:
+  datasets:
+    - name: adm1
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm1.tar.gz
+      templateRef: strabontemplate
+    - name: adm2
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm2.tar.gz
+      templateRef: strabontemplate
+    - name: adm3
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm3.tar.gz
+      templateRef: strabontemplate
+    - name: adm4
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm4.tar.gz
+      templateRef: strabontemplate
+    - name: adm5
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm5.tar.gz
+      templateRef: strabontemplate
+    - name: adm6
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm6.tar.gz
+      templateRef: strabontemplate
+    - name: adm7
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm7.tar.gz
+      templateRef: strabontemplate
+    - name: adm8
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm8.tar.gz
+      templateRef: strabontemplate
+    - name: adm9
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm9.tar.gz
+      templateRef: strabontemplate
+    - name: invekos1
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos1.tar.gz
+      templateRef: strabontemplate
+    - name: invekos2
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos2.tar.gz
+      templateRef: strabontemplate
+    - name: invekos3
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos3.tar.gz
+      templateRef: strabontemplate
+    - name: invekos4
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos4.tar.gz
+      templateRef: strabontemplate
+    - name: invekos5
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos5.tar.gz
+      templateRef: strabontemplate
+    - name: invekos6
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos6.tar.gz
+      templateRef: strabontemplate
+    - name: invekos7
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos7.tar.gz
+      templateRef: strabontemplate
+    - name: invekos8
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos8.tar.gz
+      templateRef: strabontemplate
+    - name: invekos9
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos9.tar.gz
+      templateRef: strabontemplate
+    - name: snog1
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog1.tar.gz
+      templateRef: strabontemplate
+    - name: snog2
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog2.tar.gz
+      templateRef: strabontemplate
+    - name: snog3
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog3.tar.gz
+      templateRef: strabontemplate
+    - name: snog4
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog4.tar.gz
+      templateRef: strabontemplate
+    - name: snog5
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog5.tar.gz
+      templateRef: strabontemplate
+    - name: snog6
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog6.tar.gz
+      templateRef: strabontemplate
+    - name: snog7
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog7.tar.gz
+      templateRef: strabontemplate
+  queries:
+    - name: Q7_0
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Wieselburg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_1
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Wieselburg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_2
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Pucking" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_3
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Oberschlierbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_4
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Rohr im Kremstal" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_5
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Straden" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_6
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Schwaz" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_7
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Glinzendorf" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_8
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Lambrechten" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_9
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Waidring" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_10
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Dorfstetten" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_11
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "St. Corona am Wechsel" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_12
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sankt Ruprecht an der Raab" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_13
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Trautmannsdorf an der Leitha" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_14
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Kirchberg am Walde" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_15
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Deutsch Kaltenbrunn" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_16
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Petzenkirchen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_17
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Eberstalzell" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_18
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Markt Allhau" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_19
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Leithaprodersdorf" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_20
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Kirchberg bei Mattighofen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_21
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Klein-Neusiedl" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_22
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Breitenbrunn am Neusiedler See" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_23
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Lauterach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_24
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Vordernberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_25
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Schwand im Innkreis" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_26
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Bischofstetten" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_27
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Ybbsitz" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_28
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "St. Georgen an der Gusen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_29
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Weistrach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_30
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Mistelbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_31
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Hohenems" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_32
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Eisenstadt" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_33
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Donnerskirchen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_34
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sankt Johann am Wimberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_35
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Weitensfeld im Gurktal" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_36
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Rabenstein an der Pielach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_37
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Stubenberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_38
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Wieselburg-Land" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_39
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Edt bei Lambach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_40
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Grabern" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_41
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Kreuttal" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_42
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Unternberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_43
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sarleinsbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_44
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Golling an der Salzach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_45
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Geras" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_46
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Rottenbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_47
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Ohlsdorf" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_48
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Bach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_49
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Stiwoll" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_50
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Spannberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_51
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sankt Valentin" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_52
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Pyhra" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_53
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Windischgarsten" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_54
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Edlitz" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_55
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Mayrhofen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_56
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Perschling" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_57
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Kumberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_58
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Tumeltsham" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_59
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Peterskirchen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_60
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sitzendorf an der Schmida" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_61
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Hohenberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_62
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Reichenfels" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_63
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Prellenkirchen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_64
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Wiener Neustadt" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_65
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Hollenstein an der Ybbs" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_66
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Haigermoos" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_67
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Gries am Brenner" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_68
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Schwadorf" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_69
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Halbenrain" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_70
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Stainz" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_71
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Julbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_72
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Kautzen" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_73
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Klaus an der Pyhrnbahn" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_74
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Behamberg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_75
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sankt Lambrecht" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_76
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Leutasch" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_77
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Obertrum am See" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_78
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Wippenham" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_79
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Bildein" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_80
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Manning" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_81
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Bezau" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_82
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Sankt Lorenz" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_83
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Erl" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_84
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Oberlienz" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_85
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Hirschbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_86
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Bad Ischl" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_87
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Edelstal" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_88
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Markt Hartmannsdorf" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_89
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Gutenberg-Stenzengreith" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_90
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Hippach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_91
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Neuhofen im Innkreis" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_92
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Unterfrauenhaid" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_93
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Viehdorf" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_94
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Hinzenbach" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_95
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Alberschwende" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_96
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Asparn an der Zaya" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_97
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Zeltweg" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_98
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Pressbaum" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_99
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Weikersdorf am Steinfelde" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'
+    - name: Q7_100
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?u rdf:type gadm:AdministrativeUnit3 .
+        ?u gadm:has_NAME_3 "Maissau" .
+        ?u geo:hasGeometry ?x .
+        ?x geo:asWKT ?wkt1 .
+        
+        ?f invekos:hasID ?id .
+        ?f invekos:hasCropTypeName "POTATO" .
+        ?f invekos:hasArea ?area .
+        ?f geo:hasGeometry ?y .
+        ?y geo:asWKT ?wkt2 .
+        
+        ?s rdf:type fs:FoodSecurityObservation .
+        ?s fs:hasDN ?dn .
+        ?s fs:hasRECDATE "2018-02-10T00:00:00"^^xsd:dateTime .
+        ?s geo:hasGeometry ?z .
+        ?z geo:asWKT ?wkt3 .
+        FILTER (0 < ?dn && ?dn < 60) .
+        
+        FILTER (geof:sfWithin(?wkt2, ?wkt1)).
+        FILTER (geof:distance(?wkt2, ?wkt3, uom:metre) < 5000).
+        FILTER (geof:sfIntersects(?wkt1, ?wkt3)).
+      }'

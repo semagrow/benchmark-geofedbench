@@ -1,0 +1,64 @@
+
+Setup:
+
+For the experiments we selected 100 random municipalities, using the
+PostgreSQL random() function as follows:
+
+SELECT name_3 FROM gadm36 
+WHERE name_3 ~* '\A[A-Z0-9]*\Z'
+ORDER BY RANDOM() LIMIT 100;
+
+The municipalities with special characters were pruned and replaced 
+with ones containing only characters from the English alphabet, in 
+order to avoid conflicts with the string encoding.
+
+We also selected 100 random polygons, each covering approximately 25
+square kilometres. More specifically, first we randomly generated 100
+points located inside the polygon defining the borders of Austria:
+
+SELECT (ST_Dump( ST_GeneratePoints(points_wkt, 100) )).geom 
+FROM ( SELECT ST_Union(geom) FROM gadm36 ) AS points_wkt;
+
+Then, we extended each point by a few meters in each direction in 
+order to form rectangles covering approximately an area of 25 square 
+kilometres each. Namely we created 100 rectangles, that each one has 
+as centroid one of the randonly generated points.
+
+SELECT ST_Expand(point_wkt,0.038,0.02);
+
+We pruned all polygons that were not completely within the polygon of 
+Austria and repeated the steps above until the random polygons were 100.
+
+
+==========================================================================================
+
+
+PGPASSWORD=postgres psql -U postgres -d gadm -c "SELECT name_3 FROM gadm36 WHERE name_3 ~* '\A[A-Z0-9]*\Z' ORDER BY RANDOM() LIMIT 100;" > random100name3.txt
+
+
+------------------------------------------------------------------------------------------
+
+
+// Step 1: Generate 100 random points (1 MULTIPOINT) inside Austria into table multipoint_table
+SELECT ST_SetSRID(ST_GeneratePoints(geom, 100),4326) AS points INTO multipoint_table FROM ( SELECT ST_Union(geom) as geom FROM gadm36 ) AS geom;
+
+// Step 2: Get all points from multipoint_table into point_table
+SELECT ST_SetSRID((ST_Dump(points)).geom,4326) AS geom INTO point_table FROM multipoint_table;
+
+// Instead of steps 1 and 2:
+( select ST_AsText((ST_Dump( ST_GeneratePoints('POLYGON((15.11 48.68, 15.11 48.72, 15.19 48.72, 15.19 48.68, 15.11 48.68))', 10) )).geom); )
+
+// Step 3 (optional): Find length and width from a given default rectangle
+SELECT ST_XMax(ST_GeomFromText(WKT,4326)) - ST_XMin(ST_GeomFromText(WKT,4326)) as x_dist1, ST_YMax(ST_GeomFromText(WKT,4326)) - ST_YMin(ST_GeomFromText(WKT,4326)) as y_dist1;
+
+// Step 4: Expand all points to get rectangles with the given length and width
+SELECT ST_SetSRID(ST_Expand(geom,0.03800000000000028,0.01999999999999915),4326) as geom INTO polygon_table FROM point_table;
+
+// Step 5: 
+SELECT pt.geom INTO polygons_into_austria FROM polygon_table pt, ( SELECT ST_Union(geom) as geom FROM gadm36 ) AS a WHERE ST_Within(pt.geom, a.geom);
+
+
+
+// Export polygons to file: 
+PGPASSWORD=postgres psql -U postgres -d gadm -c "SELECT ST_AsText(geom) FROM polygons_into_austria;" > random100polygons.txt
+

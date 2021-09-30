@@ -1,0 +1,19 @@
+apiVersion: kobe.semagrow.org/v1alpha1
+kind: FederatorTemplate
+metadata:
+  name: semagrowgsstemplate
+spec:
+  containers:
+    - name: maincontainer 
+      image: antru6/semagrow-xearth-jpd
+      ports:
+      - containerPort: 8080
+  port: 8080
+  path: /SemaGrow/sparql
+  confFromFileImage: alpine:3
+  inputDumpDir: /semagrow/input
+  outputDumpDir: /semagrow/output
+  confImage: registry.gitlab.com/nefelipk/semagrow-init-geo-mbb-27
+  inputDir: /input
+  outputDir: /output
+  fedConfDir: /etc/default/semagrow

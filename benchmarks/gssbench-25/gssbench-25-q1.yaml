@@ -1,0 +1,2127 @@
+apiVersion: kobe.semagrow.org/v1alpha1
+kind: Benchmark
+metadata:
+  name: gssbench
+spec:
+  datasets:
+    - name: adm1
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm1.tar.gz
+      templateRef: strabontemplate
+    - name: adm2
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm2.tar.gz
+      templateRef: strabontemplate
+    - name: adm3
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm3.tar.gz
+      templateRef: strabontemplate
+    - name: adm4
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm4.tar.gz
+      templateRef: strabontemplate
+    - name: adm5
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm5.tar.gz
+      templateRef: strabontemplate
+    - name: adm6
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm6.tar.gz
+      templateRef: strabontemplate
+    - name: adm7
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm7.tar.gz
+      templateRef: strabontemplate
+    - name: adm8
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm8.tar.gz
+      templateRef: strabontemplate
+    - name: adm9
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/adm9.tar.gz
+      templateRef: strabontemplate
+    - name: invekos1
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos1.tar.gz
+      templateRef: strabontemplate
+    - name: invekos2
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos2.tar.gz
+      templateRef: strabontemplate
+    - name: invekos3
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos3.tar.gz
+      templateRef: strabontemplate
+    - name: invekos4
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos4.tar.gz
+      templateRef: strabontemplate
+    - name: invekos5
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos5.tar.gz
+      templateRef: strabontemplate
+    - name: invekos6
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos6.tar.gz
+      templateRef: strabontemplate
+    - name: invekos7
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos7.tar.gz
+      templateRef: strabontemplate
+    - name: invekos8
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos8.tar.gz
+      templateRef: strabontemplate
+    - name: invekos9
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/invekos9.tar.gz
+      templateRef: strabontemplate
+    - name: snog1
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog1.tar.gz
+      templateRef: strabontemplate
+    - name: snog2
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog2.tar.gz
+      templateRef: strabontemplate
+    - name: snog3
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog3.tar.gz
+      templateRef: strabontemplate
+    - name: snog4
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog4.tar.gz
+      templateRef: strabontemplate
+    - name: snog5
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog5.tar.gz
+      templateRef: strabontemplate
+    - name: snog6
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog6.tar.gz
+      templateRef: strabontemplate
+    - name: snog7
+      files:
+        - url: http://rdf.iit.demokritos.gr/dumps/gss/snog7.tar.gz
+      templateRef: strabontemplate
+  queries:
+    - name: Q1_0
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.11 48.68, 15.11 48.72, 15.19 48.72, 15.19 48.68, 15.11 48.68))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_1
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.11 48.68, 15.11 48.72, 15.19 48.72, 15.19 48.68, 15.11 48.68))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_2
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.87 48.18, 14.87 48.14, 14.94 48.14, 14.94 48.18, 14.87 48.18))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_3
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.434642683342307 47.01458709260632,15.434642683342307 47.05458709260631,15.510642683342308 47.05458709260631,15.510642683342308 47.01458709260632,15.434642683342307 47.01458709260632))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_4
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.691516059754333 47.76101391438077,13.691516059754333 47.80101391438076,13.767516059754334 47.80101391438076,13.767516059754334 47.76101391438077,13.691516059754333 47.76101391438077))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_5
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.433193696207997 47.30239585735995,12.433193696207997 47.34239585735994,12.509193696207998 47.34239585735994,12.509193696207998 47.30239585735995,12.433193696207997 47.30239585735995))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_6
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.050003897719144 47.07718192374114,11.050003897719144 47.117181923741136,11.126003897719144 47.117181923741136,11.126003897719144 47.07718192374114,11.050003897719144 47.07718192374114))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_7
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((10.29710219426726 47.23557565089658,10.29710219426726 47.27557565089657,10.373102194267261 47.27557565089657,10.373102194267261 47.23557565089658,10.29710219426726 47.23557565089658))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_8
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.858390319802043 46.59337244841045,13.858390319802043 46.63337244841044,13.934390319802043 46.63337244841044,13.934390319802043 46.59337244841045,13.858390319802043 46.59337244841045))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_9
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.850433370565847 47.53684284769688,15.850433370565847 47.576842847696874,15.926433370565848 47.576842847696874,15.926433370565848 47.53684284769688,15.850433370565847 47.53684284769688))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_10
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.111715521966662 47.22092194826052,12.111715521966662 47.26092194826051,12.187715521966663 47.26092194826051,12.187715521966663 47.22092194826052,12.111715521966662 47.22092194826052))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_11
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.898690082019703 46.77550320771602,14.898690082019703 46.81550320771601,14.974690082019704 46.81550320771601,14.974690082019704 46.77550320771602,14.898690082019703 46.77550320771602))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_12
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.582066076669284 47.79662343325772,14.582066076669284 47.836623433257714,14.658066076669284 47.836623433257714,14.658066076669284 47.79662343325772,14.582066076669284 47.79662343325772))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_13
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.199328563982924 47.36677210172913,14.199328563982924 47.406772101729125,14.275328563982924 47.406772101729125,14.275328563982924 47.36677210172913,14.199328563982924 47.36677210172913))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_14
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.340937475125896 46.87731323150875,12.340937475125896 46.91731323150874,12.416937475125897 46.91731323150874,12.416937475125897 46.87731323150875,12.340937475125896 46.87731323150875))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_15
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.17860454375648 47.47896406914155,12.17860454375648 47.51896406914154,12.25460454375648 47.51896406914154,12.25460454375648 47.47896406914155,12.17860454375648 47.47896406914155))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_16
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.777799031064834 48.240107426955966,14.777799031064834 48.28010742695596,14.853799031064835 48.28010742695596,14.853799031064835 48.240107426955966,14.777799031064834 48.240107426955966))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_17
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.757703540445206 48.30826708293204,13.757703540445206 48.34826708293203,13.833703540445207 48.34826708293203,13.833703540445207 48.30826708293204,13.757703540445206 48.30826708293204))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_18
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.886523550501442 46.70077794301088,12.886523550501442 46.74077794301087,12.962523550501443 46.74077794301087,12.962523550501443 46.70077794301088,12.886523550501442 46.70077794301088))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_19
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.670128829092032 48.47330034446834,16.670128829092032 48.513300344468334,16.746128829092033 48.513300344468334,16.746128829092033 48.47330034446834,16.670128829092032 48.47330034446834))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_20
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.354120666409965 47.405635889741085,16.354120666409965 47.44563588974108,16.430120666409966 47.44563588974108,16.430120666409966 47.405635889741085,16.354120666409965 47.405635889741085))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_21
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.38064449517269 47.048092989952295,13.38064449517269 47.08809298995229,13.456644495172691 47.08809298995229,13.456644495172691 47.048092989952295,13.38064449517269 47.048092989952295))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_22
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.08641159478515 48.234792540921084,16.08641159478515 48.27479254092108,16.16241159478515 48.27479254092108,16.16241159478515 48.234792540921084,16.08641159478515 48.234792540921084))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_23
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.484340057103712 48.26787086033963,15.484340057103712 48.30787086033962,15.560340057103712 48.30787086033962,15.560340057103712 48.26787086033963,15.484340057103712 48.26787086033963))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_24
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.339335656399578 47.201539914308434,11.339335656399578 47.241539914308426,11.415335656399579 47.241539914308426,11.415335656399579 47.201539914308434,11.339335656399578 47.201539914308434))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_25
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.522133914648595 46.63540268484473,13.522133914648595 46.67540268484472,13.598133914648596 46.67540268484472,13.598133914648596 46.63540268484473,13.522133914648595 46.63540268484473))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_26
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.179779174234271 47.88300937185376,14.179779174234271 47.92300937185375,14.255779174234272 47.92300937185375,14.255779174234272 47.88300937185376,14.179779174234271 47.88300937185376))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_27
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.23027493743797 47.31080671626932,13.23027493743797 47.35080671626931,13.306274937437971 47.35080671626931,13.306274937437971 47.31080671626932,13.23027493743797 47.31080671626932))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_28
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.691148079405481 47.41075603330437,15.691148079405481 47.45075603330436,15.767148079405482 47.45075603330436,15.767148079405482 47.41075603330437,15.691148079405481 47.41075603330437))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_29
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.105622137936095 47.70044819450797,13.105622137936095 47.74044819450796,13.181622137936095 47.74044819450796,13.181622137936095 47.70044819450797,13.105622137936095 47.70044819450797))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_30
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.423773877200134 46.774213079693865,15.423773877200134 46.81421307969386,15.499773877200134 46.81421307969386,15.499773877200134 46.774213079693865,15.423773877200134 46.774213079693865))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_31
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.923657396257997 48.58832369829489,15.923657396257997 48.628323698294885,15.999657396257998 48.628323698294885,15.999657396257998 48.58832369829489,15.923657396257997 48.58832369829489))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_32
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.482737007418363 48.57550931136599,15.482737007418363 48.61550931136598,15.558737007418364 48.61550931136598,15.558737007418364 48.57550931136599,15.482737007418363 48.57550931136599))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_33
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.40868109021906 47.90644906172828,16.40868109021906 47.94644906172827,16.48468109021906 47.94644906172827,16.48468109021906 47.90644906172828,16.40868109021906 47.90644906172828))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_34
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.861499162373725 48.50592877535485,13.861499162373725 48.545928775354845,13.937499162373726 48.545928775354845,13.937499162373726 48.50592877535485,13.861499162373725 48.50592877535485))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_35
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.8632317269573 48.33854434472779,15.8632317269573 48.37854434472778,15.939231726957301 48.37854434472778,15.939231726957301 48.33854434472779,15.8632317269573 48.33854434472779))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_36
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.599584871791366 46.91673791959436,14.599584871791366 46.95673791959435,14.675584871791367 46.95673791959435,14.675584871791367 46.91673791959436,14.599584871791366 46.91673791959436))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_37
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.213558676658625 47.448539748726255,15.213558676658625 47.48853974872625,15.289558676658626 47.48853974872625,15.289558676658626 47.448539748726255,15.213558676658625 47.448539748726255))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_38
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.147882482749758 47.32631664655837,15.147882482749758 47.36631664655836,15.223882482749758 47.36631664655836,15.223882482749758 47.32631664655837,15.147882482749758 47.32631664655837))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_39
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.781255638446796 47.72076137211239,13.781255638446796 47.760761372112384,13.857255638446796 47.760761372112384,13.857255638446796 47.72076137211239,13.781255638446796 47.72076137211239))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_40
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.254013928527447 47.022822806152206,12.254013928527447 47.0628228061522,12.330013928527448 47.0628228061522,12.330013928527448 47.022822806152206,12.254013928527447 47.022822806152206))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_41
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.01841724141647 47.033783353798874,11.01841724141647 47.073783353798866,11.09441724141647 47.073783353798866,11.09441724141647 47.033783353798874,11.01841724141647 47.033783353798874))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_42
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.681866101598661 47.457468532004555,15.681866101598661 47.49746853200455,15.757866101598662 47.49746853200455,15.757866101598662 47.457468532004555,15.681866101598661 47.457468532004555))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_43
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.77060782787228 47.08792109458055,11.77060782787228 47.12792109458054,11.84660782787228 47.12792109458054,11.84660782787228 47.08792109458055,11.77060782787228 47.08792109458055))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_44
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.566892824205295 46.69694441976679,14.566892824205295 46.73694441976678,14.642892824205296 46.73694441976678,14.642892824205296 46.69694441976679,14.566892824205295 46.69694441976679))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_45
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.855811868291353 47.90432155056815,14.855811868291353 47.94432155056814,14.931811868291353 47.94432155056814,14.931811868291353 47.90432155056815,14.855811868291353 47.90432155056815))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_46
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.900341286057083 46.93519589786969,13.900341286057083 46.97519589786968,13.976341286057083 46.97519589786968,13.976341286057083 46.93519589786969,13.900341286057083 46.93519589786969))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_47
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.693308992722747 48.274789209402456,14.693308992722747 48.31478920940245,14.769308992722747 48.31478920940245,14.769308992722747 48.274789209402456,14.693308992722747 48.274789209402456))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_48
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.61862303070283 47.792926544736694,16.61862303070283 47.83292654473669,16.694623030702832 47.83292654473669,16.694623030702832 47.792926544736694,16.61862303070283 47.792926544736694))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_49
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.75466881230794 48.17106507316106,13.75466881230794 48.21106507316105,13.830668812307941 48.21106507316105,13.830668812307941 48.17106507316106,13.75466881230794 48.17106507316106))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_50
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.788068126703884 46.75429232280543,12.788068126703884 46.794292322805425,12.864068126703884 46.794292322805425,12.864068126703884 46.75429232280543,12.788068126703884 46.75429232280543))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_51
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.66109515905031 48.022871388432016,16.66109515905031 48.06287138843201,16.73709515905031 48.06287138843201,16.73709515905031 48.022871388432016,16.66109515905031 48.022871388432016))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_52
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.69954067423516 47.08171371813568,13.69954067423516 47.12171371813567,13.775540674235161 47.12171371813567,13.775540674235161 47.08171371813568,13.69954067423516 47.08171371813568))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_53
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.074754743234923 48.034102530850554,16.074754743234923 48.074102530850546,16.150754743234923 48.074102530850546,16.150754743234923 48.034102530850554,16.074754743234923 48.034102530850554))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_54
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.215129874097164 48.43771161756157,15.215129874097164 48.47771161756156,15.291129874097164 48.47771161756156,15.291129874097164 48.43771161756157,15.215129874097164 48.43771161756157))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_55
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.48672955965846 48.57146440512169,16.48672955965846 48.61146440512168,16.56272955965846 48.61146440512168,16.56272955965846 48.57146440512169,16.48672955965846 48.57146440512169))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_56
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.439330636246874 47.025096964619216,11.439330636246874 47.06509696461921,11.515330636246874 47.06509696461921,11.515330636246874 47.025096964619216,11.439330636246874 47.025096964619216))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_57
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.46893674878454 46.63099387015049,13.46893674878454 46.67099387015048,13.54493674878454 46.67099387015048,13.54493674878454 46.63099387015049,13.46893674878454 46.63099387015049))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_58
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.350127392345192 47.764526937506496,14.350127392345192 47.80452693750649,14.426127392345192 47.80452693750649,14.426127392345192 47.764526937506496,14.350127392345192 47.764526937506496))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_59
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.19086941078874 47.31311924226735,13.19086941078874 47.35311924226734,13.26686941078874 47.35311924226734,13.26686941078874 47.31311924226735,13.19086941078874 47.31311924226735))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_60
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.911069145031682 47.163234992389604,15.911069145031682 47.203234992389596,15.987069145031683 47.203234992389596,15.987069145031683 47.163234992389604,15.911069145031682 47.163234992389604))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_61
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.05286514997095 47.8539480163137,13.05286514997095 47.89394801631369,13.12886514997095 47.89394801631369,13.12886514997095 47.8539480163137,13.05286514997095 47.8539480163137))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_62
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.11618065020354 47.65995254360887,16.11618065020354 47.69995254360886,16.19218065020354 47.69995254360886,16.19218065020354 47.65995254360887,16.11618065020354 47.65995254360887))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_63
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.038675163874544 48.476346839548384,14.038675163874544 48.516346839548376,14.114675163874544 48.516346839548376,14.114675163874544 48.476346839548384,14.038675163874544 48.476346839548384))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_64
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.99955220586012 48.303025275818285,15.99955220586012 48.34302527581828,16.07555220586012 48.34302527581828,16.07555220586012 48.303025275818285,15.99955220586012 48.303025275818285))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_65
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.786713603629584 46.99346845769536,14.786713603629584 47.03346845769535,14.862713603629585 47.03346845769535,14.862713603629585 46.99346845769536,14.786713603629584 46.99346845769536))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_66
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.02695232486526 47.58119540754141,15.02695232486526 47.6211954075414,15.10295232486526 47.6211954075414,15.10295232486526 47.58119540754141,15.02695232486526 47.58119540754141))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_67
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.961424049754843 47.31750040766557,14.961424049754843 47.35750040766556,15.037424049754843 47.35750040766556,15.037424049754843 47.31750040766557,14.961424049754843 47.31750040766557))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_68
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.32070823213885 47.79546210953955,13.32070823213885 47.83546210953954,13.39670823213885 47.83546210953954,13.39670823213885 47.79546210953955,13.32070823213885 47.79546210953955))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_69
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.296676627539883 48.18673332609959,13.296676627539883 48.226733326099584,13.372676627539883 48.226733326099584,13.372676627539883 48.18673332609959,13.296676627539883 48.18673332609959))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_70
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.543431908343052 47.29484818111934,12.543431908343052 47.334848181119334,12.619431908343053 47.334848181119334,12.619431908343053 47.29484818111934,12.543431908343052 47.29484818111934))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_71
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((10.807233138667813 46.82822486770265,10.807233138667813 46.868224867702644,10.883233138667814 46.868224867702644,10.883233138667814 46.82822486770265,10.807233138667813 46.82822486770265))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_72
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((10.720073355227667 47.241897343086485,10.720073355227667 47.28189734308648,10.796073355227668 47.28189734308648,10.796073355227668 47.241897343086485,10.720073355227667 47.241897343086485))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_73
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((10.038408718524058 46.94260056467504,10.038408718524058 46.98260056467503,10.114408718524059 46.98260056467503,10.114408718524059 46.94260056467504,10.038408718524058 46.94260056467504))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_74
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.303215051505159 46.86779405848392,14.303215051505159 46.907794058483915,14.37921505150516 46.907794058483915,14.37921505150516 46.86779405848392,14.303215051505159 46.86779405848392))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_75
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.974057526787103 47.971465337554534,15.974057526787103 48.011465337554526,16.050057526787104 48.011465337554526,16.050057526787104 47.971465337554534,15.974057526787103 47.971465337554534))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_76
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.710672839374894 47.30380675576747,11.710672839374894 47.34380675576746,11.786672839374894 47.34380675576746,11.786672839374894 47.30380675576747,11.710672839374894 47.30380675576747))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_77
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.727076184505192 46.65533639617955,14.727076184505192 46.69533639617954,14.803076184505192 46.69533639617954,14.803076184505192 46.65533639617955,14.727076184505192 46.65533639617955))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_78
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.464755772322999 47.816009298431375,14.464755772322999 47.85600929843137,14.540755772323 47.85600929843137,14.540755772323 47.816009298431375,14.464755772322999 47.816009298431375))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_79
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.010061894296937 47.095915248071464,14.010061894296937 47.135915248071456,14.086061894296938 47.135915248071456,14.086061894296938 47.095915248071464,14.010061894296937 47.095915248071464))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_80
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.72347961860265 46.7544413930764,12.72347961860265 46.79444139307639,12.79947961860265 46.79444139307639,12.79947961860265 46.7544413930764,12.72347961860265 46.7544413930764))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_81
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.869713908239294 47.51389198581556,11.869713908239294 47.553891985815554,11.945713908239295 47.553891985815554,11.945713908239295 47.51389198581556,11.869713908239294 47.51389198581556))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_82
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.781759914070594 48.30981140701175,14.781759914070594 48.34981140701174,14.857759914070595 48.34981140701174,14.857759914070595 48.30981140701175,14.781759914070594 48.30981140701175))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_83
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.54418850184028 48.12811025910666,13.54418850184028 48.168110259106655,13.62018850184028 48.168110259106655,13.62018850184028 48.12811025910666,13.54418850184028 48.12811025910666))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_84
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.19161526429519 46.632102034559296,13.19161526429519 46.67210203455929,13.267615264295191 46.67210203455929,13.267615264295191 46.632102034559296,13.19161526429519 46.632102034559296))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_85
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.698801380163689 46.937255290727386,13.698801380163689 46.97725529072738,13.774801380163689 46.97725529072738,13.774801380163689 46.937255290727386,13.698801380163689 46.937255290727386))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_86
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.46331503496451 48.452397678909655,16.46331503496451 48.49239767890965,16.53931503496451 48.49239767890965,16.53931503496451 48.452397678909655,16.46331503496451 48.452397678909655))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_87
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((15.434192867887425 48.20944046073186,15.434192867887425 48.249440460731854,15.510192867887426 48.249440460731854,15.510192867887426 48.20944046073186,15.434192867887425 48.20944046073186))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_88
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.211639987256019 47.286021608661514,11.211639987256019 47.326021608661506,11.28763998725602 47.326021608661506,11.28763998725602 47.286021608661514,11.211639987256019 47.286021608661514))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_89
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.465888023329137 46.745379803505465,13.465888023329137 46.78537980350546,13.541888023329138 46.78537980350546,13.541888023329138 46.745379803505465,13.465888023329137 46.745379803505465))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_90
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.992509230963053 47.86797887635364,13.992509230963053 47.90797887635363,14.068509230963054 47.90797887635363,14.068509230963054 47.86797887635364,13.992509230963053 47.86797887635364))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_91
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.34113049241864 47.64056336255976,12.34113049241864 47.68056336255975,12.417130492418641 47.68056336255975,12.417130492418641 47.64056336255976,12.34113049241864 47.64056336255976))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_92
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.223989998230909 47.37949092227547,13.223989998230909 47.419490922275465,13.29998999823091 47.419490922275465,13.29998999823091 47.37949092227547,13.223989998230909 47.37949092227547))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_93
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.828564360058479 46.747681455472076,14.828564360058479 46.78768145547207,14.90456436005848 46.78768145547207,14.90456436005848 46.747681455472076,14.828564360058479 46.747681455472076))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_94
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((13.831205045131512 46.63591658997069,13.831205045131512 46.67591658997068,13.907205045131512 46.67591658997068,13.907205045131512 46.63591658997069,13.831205045131512 46.63591658997069))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_95
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((11.598733634134797 47.02565492917381,11.598733634134797 47.0656549291738,11.674733634134798 47.0656549291738,11.674733634134798 47.02565492917381,11.598733634134797 47.02565492917381))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_96
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((16.067088452892207 48.453394159619336,16.067088452892207 48.49339415961933,16.143088452892208 48.49339415961933,16.143088452892208 48.453394159619336,16.067088452892207 48.453394159619336))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_97
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.986020580267683 47.696926368884895,14.986020580267683 47.73692636888489,15.062020580267683 47.73692636888489,15.062020580267683 47.696926368884895,14.986020580267683 47.696926368884895))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_98
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.137305282139453 47.75108742761931,14.137305282139453 47.7910874276193,14.213305282139453 47.7910874276193,14.213305282139453 47.75108742761931,14.137305282139453 47.75108742761931))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_99
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((14.024205897041497 48.475596026945674,14.024205897041497 48.515596026945666,14.100205897041498 48.515596026945666,14.100205897041498 48.475596026945674,14.024205897041497 48.475596026945674))"^^geo:wktLiteral)).
+      }'
+    - name: Q1_100
+      language: sparql
+      queryString: 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX gadm: <http://gadm.org/ontology#>
+      PREFIX fs: <http://earthanalytics.eu/fs/ontology/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      SELECT * WHERE {
+        ?s rdf:type gadm:AdministrativeUnit3.
+        ?s gadm:has_NAME_1 ?adm1 .
+        ?s gadm:has_NAME_2 ?adm2 .
+        ?s gadm:has_NAME_3 ?adm3.
+        ?s geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt .
+         
+        FILTER (geof:sfIntersects(?wkt, "POLYGON((12.979072432354561 47.34750599680155,12.979072432354561 47.38750599680154,13.055072432354562 47.38750599680154,13.055072432354562 47.34750599680155,12.979072432354561 47.34750599680155))"^^geo:wktLiteral)).
+      }'
