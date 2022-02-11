@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: maincontainer 
-      image: antru6/semagrow-xearth-jpd
+      image: semagrow/semagrow:feat-gssbench
       ports:
       - containerPort: 8080
   port: 8080
