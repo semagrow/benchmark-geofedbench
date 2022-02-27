@@ -20,6 +20,8 @@ It comprises two suites:
   considered a difficult operation since it cannot be evaluated fast using a spatial index (as it is the case for
   the spatial relationships such as contains, within, etc.)
 
+The dump files can be found in [http://rdf.iit.demokritos.gr/dumps/](http://rdf.iit.demokritos.gr/dumps/)
+
 ## Prerequisites
 
 The experiments are executed using the KOBE benchmarking engine.
@@ -99,6 +101,79 @@ kubectl delete federatortemplates.kobe.semagrow.org semagrowtemplate
 kubectl delete datasettemplates.kobe.semagrow.org strabontemplate
 ```
 and then redo the steps from the beginning for the other query.
+
+## How to run an experiment from the GDOBench suite
+
+In the following, we show the steps for deploying an experiment.
+For example, to run the query load that corresponds to the **Q4** query template
+follow the commands below.
+
+First, apply the template for Strabon:
+```bash
+kubectl apply -f strabontemplate.yaml
+```
+
+Then, apply the benchmark that corresponds with the query load of **Q4**:
+```bash
+kubectl apply -f benchmarks/gdobench/gdobench-q4.yaml
+```
+Check the `benchmarks/gdobench/` and `benchmarks/gdobench/validation-task` directories
+for the remaining query loads of the suite. 'gdobench-q1-2-3.yaml' contains a selection
+of the queries from the templates Q1, Q2, Q3.
+Do not apply any of the remaning specifications though - apply only one part of
+the query load at a time.
+
+Before running the experiment, you should verify that the datasets are loaded. 
+Use the following command:
+```bash
+kubectl -n gdobench get pods
+```
+
+When the datasets are loaded, you should get the following output:
+```bash
+NAME  			STATUS
+lucas-all-pod		Running
+invekos-all-pod		Running
+```
+
+Check if the data are actually stored, for each pod.
+For lucas-all-pod, for example, use the following command:
+```bash
+kubectl -n gssbench logs lucas-all-pod -c maincontainer | grep "Data Stored Successfully"
+```
+"Data Stored Successfully" should be printed in the output.
+
+Then, apply the semagrow templates (for unoptimized and optimized versions):
+```bash
+kubectl apply -f experiments/gdobench/semagrowtemplate-gdo-orig.yaml
+kubectl apply -f experiments/gdobench/semagrowtemplate-gdo-dopt.yaml
+```
+
+Proceed now with the execution of the first experiment (unoptimized Semagrow):
+```bash
+kubectl apply -f experiments/gdobench/exp-gdo-orig.yaml
+```
+
+As previously, you can review the state of the experiment with the following command:
+```bash
+kubectl -n gdobench get pods
+```
+To view the results, check the logs of the containers or check the Kibana
+dashboards offered by KOBE (check the KOBE User Guide for more details).
+
+After the first experiment ends, then proceed with the second experiment (optimized Semagrow):
+```bash
+kubectl apply -f experiments/gdobench/exp-gdo-dopt.yaml
+```
+
+Before you run another query, delete all specifications as follows:
+```bash
+kubectl delete experiments.kobe.semagrow.org exp-gdo-orig exp-gdo-dopt
+kubectl delete benchmarks.kobe.semagrow.org gdobench
+kubectl delete federatortemplates.kobe.semagrow.org semagrowtemplate-gdo-dopt semagrowtemplate-gdo-orig
+kubectl delete datasettemplates.kobe.semagrow.org strabontemplate
+```
+and then redo the steps from the beginning for the other queries.
 
 ## How to build the Docker images yourself (optional step)
 
