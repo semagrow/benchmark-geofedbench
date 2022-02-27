@@ -1,0 +1,118 @@
+apiVersion: kobe.semagrow.org/v1alpha1
+kind: Benchmark
+metadata:
+  name: gdobench
+spec:
+  datasets:
+    - name: lucas-all
+      files:
+        - url: https://rdf.iit.demokritos.gr/dumps/nefelipk/lucas-all.tar.gz
+      templateRef: strabontemplate
+    - name: invekos-all
+      files:
+        - url: https://rdf.iit.demokritos.gr/dumps/nefelipk/invekos-all.tar.gz
+      templateRef: strabontemplate
+  queries:
+    - name: D01
+      language: sparql
+      queryString: 'PREFIX lucas_r: <http://deg.iit.demokritos.gr/lucas/resource/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      
+      SELECT * WHERE {
+        lucas_r:5789 geo:hasGeometry ?l .
+        ?l geo:asWKT ?wkt1 .
+        ?i invekos:hasID ?id .
+        ?i geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt2 .
+        
+        FILTER( geof:distance(?wkt1, ?wkt2, uom:metre) < 10 ) .
+      }'
+    - name: D02
+      language: sparql
+      queryString: 'PREFIX lucas_r: <http://deg.iit.demokritos.gr/lucas/resource/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      
+      SELECT * WHERE {
+        lucas_r:5789 geo:hasGeometry ?l .
+        ?l geo:asWKT ?wkt1 .
+        ?i invekos:hasID ?id .
+        ?i geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt2 .
+        
+        FILTER( geof:distance(?wkt1, ?wkt2, uom:metre) < 100 ) .
+      }'
+    - name: D03
+      language: sparql
+      queryString: 'PREFIX lucas_r: <http://deg.iit.demokritos.gr/lucas/resource/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      
+      SELECT * WHERE {
+        lucas_r:5789 geo:hasGeometry ?l .
+        ?l geo:asWKT ?wkt1 .
+        ?i invekos:hasID ?id .
+        ?i geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt2 .
+        
+        FILTER( geof:distance(?wkt1, ?wkt2, uom:metre) < 1000 ) .
+      }'
+    - name: D04
+      language: sparql
+      queryString: 'PREFIX lucas_r: <http://deg.iit.demokritos.gr/lucas/resource/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      
+      SELECT * WHERE {
+        lucas_r:5789 geo:hasGeometry ?l .
+        ?l geo:asWKT ?wkt1 .
+        ?i invekos:hasID ?id .
+        ?i geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt2 .
+        
+        FILTER( geof:distance(?wkt1, ?wkt2, uom:metre) < 10000 ) .
+      }'
+    - name: D05
+      language: sparql
+      queryString: 'PREFIX lucas_r: <http://deg.iit.demokritos.gr/lucas/resource/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      
+      SELECT * WHERE {
+        lucas_r:5789 geo:hasGeometry ?l .
+        ?l geo:asWKT ?wkt1 .
+        ?i invekos:hasID ?id .
+        ?i geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt2 .
+        
+        FILTER( geof:distance(?wkt1, ?wkt2, uom:metre) < 50000 ) .
+      }'
+    - name: D06
+      language: sparql
+      queryString: 'PREFIX lucas_r: <http://deg.iit.demokritos.gr/lucas/resource/>
+      PREFIX invekos: <http://deg.iit.demokritos.gr/invekos/>
+      PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
+      
+      SELECT * WHERE {
+        lucas_r:5789 geo:hasGeometry ?l .
+        ?l geo:asWKT ?wkt1 .
+        ?i invekos:hasID ?id .
+        ?i geo:hasGeometry ?g .
+        ?g geo:asWKT ?wkt2 .
+        
+        FILTER( geof:distance(?wkt1, ?wkt2, uom:metre) < 100000 ) .
+      }'
+ 

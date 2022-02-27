@@ -1,0 +1,19 @@
+apiVersion: kobe.semagrow.org/v1alpha1
+kind: FederatorTemplate
+metadata:
+  name: semagrowtemplate-gdo-orig
+spec:
+  containers:
+    - name: maincontainer 
+      image: semagrow/semagrow:2.1.0
+      ports:
+      - containerPort: 8080
+  port: 8080
+  path: /SemaGrow/sparql
+  confFromFileImage: alpine:3
+  inputDumpDir: /sevod-scraper/input
+  outputDumpDir: /sevod-scraper/output
+  confImage: antru6/semagrow-init-gdo
+  inputDir: /kobe/input
+  outputDir: /kobe/output
+  fedConfDir: /etc/default/semagrow

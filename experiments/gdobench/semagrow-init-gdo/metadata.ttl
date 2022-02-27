@@ -1,0 +1,141 @@
+###################################################################################################
+
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix svd: <http://www.w3.org/2015/03/sevod#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+###################################################################################################
+
+[] a void:Dataset ;
+  void:propertyPartition [
+    void:property <http://deg.iit.demokritos.gr/lucas/hasLC1> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "59"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/lucas/hasLC1_PERC> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "40"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/lucas/hasLC1_SPEC> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "61"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/lucas/hasOBS_DIRECT> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "4"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/lucas/hasSURVEYDATE> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "104"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/lucasLC1> ;
+    void:triples "26"^^xsd:integer ;
+    void:distinctSubjects "26"^^xsd:integer ;
+    void:distinctObjects "23"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/conversion/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/lucasLC1_spec> ;
+    void:triples "26"^^xsd:integer ;
+    void:distinctSubjects "26"^^xsd:integer ;
+    void:distinctObjects "4"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/conversion/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/invekosCropTypeName> ;
+    void:triples "26"^^xsd:integer ;
+    void:distinctSubjects "26"^^xsd:integer ;
+    void:distinctObjects "16"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/conversion/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/invekosCropTypeNumber> ;
+    void:triples "26"^^xsd:integer ;
+    void:distinctSubjects "26"^^xsd:integer ;
+    void:distinctObjects "16"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/conversion/"^^xsd:string ;
+  ] , [
+    void:property <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "4325"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/resource/"^^xsd:string ;
+    svd:objectRegexPattern "http://deg.iit.demokritos.gr/lucas/geometry/"^^xsd:string ;
+  ] , [
+    void:property <http://www.opengis.net/ont/geosparql#asWKT> ;
+    void:triples "4325"^^xsd:integer ;
+    void:distinctSubjects "4325"^^xsd:integer ;
+    void:distinctObjects "4325"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/lucas/geometry/"^^xsd:string ;
+  ] ;
+  void:sparqlEndpoint <http://lucas-all.gdobench.svc:8080/Strabon/Query> ;
+  void:triples "30379"^^xsd:integer ;
+  void:properties "11"^^xsd:integer ;
+  void:classes "0"^^xsd:integer ;
+  void:entities "0"^^xsd:integer ;
+  void:distinctSubjects "8676"^^xsd:integer ;
+  void:distinctObjects "8940"^^xsd:integer .
+
+###################################################################################################
+
+[] a void:Dataset ;
+  void:propertyPartition [
+    void:property <http://deg.iit.demokritos.gr/invekos/hasID> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "1440141"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/invekos/hasCropTypeName> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "17"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/invekos/hasCropTypeNumber> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "17"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/invekos/hasArea> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "1336339"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://deg.iit.demokritos.gr/invekos/hasDescription> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "62"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/resource/"^^xsd:string ;
+  ] , [
+    void:property <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "2005257"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/resource/"^^xsd:string ;
+    svd:objectRegexPattern "http://deg.iit.demokritos.gr/invekos/geometry/"^^xsd:string ;
+  ] , [
+    void:property <http://www.opengis.net/ont/geosparql#asWKT> ;
+    void:triples "2005257"^^xsd:integer ;
+    void:distinctSubjects "2005257"^^xsd:integer ;
+    void:distinctObjects "2005257"^^xsd:integer ;
+    svd:subjectRegexPattern "http://deg.iit.demokritos.gr/invekos/geometry/"^^xsd:string ;
+  ] ;
+  void:sparqlEndpoint <http://invekos-all.gdobench.svc:8080/Strabon/Query> ;
+  void:triples "14036799"^^xsd:integer ;
+  void:properties "7"^^xsd:integer ;
+  void:classes "0"^^xsd:integer ;
+  void:entities "0"^^xsd:integer ;
+  void:distinctSubjects "4010514"^^xsd:integer ;
+  void:distinctObjects "6787090"^^xsd:integer .
+  
+###################################################################################################
